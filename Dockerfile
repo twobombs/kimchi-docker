@@ -17,4 +17,9 @@ RUN git clone https://github.com/kimchi-project/wok.git
 # build
 RUN cd /kimchi && ./autogen.sh --system
 
+# change starup behaviour
+COPY run /root/run
+RUN chmod 755 /root/run
+
 EXPOSE 8001
+ENTRYPOINT /root/run
