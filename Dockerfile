@@ -16,6 +16,7 @@ RUN git clone https://github.com/kimchi-project/wok.git
 
 # build
 RUN cd /kimchi && ./autogen.sh --system
+RUN cd /wok && ./autogen.sh --system
 
 # change starup behaviour
 COPY run /root/run
