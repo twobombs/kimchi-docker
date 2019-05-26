@@ -11,5 +11,8 @@ libvirtd -d && service virtlogd start && service libvirt-bin start && brctl addb
 # start web services
 service nginx start
 
+# wok on 3
+cd /wok && python3 src/wokd
+
 echo "done"
 read n -1
