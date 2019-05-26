@@ -15,8 +15,8 @@ RUN git clone https://github.com/kimchi-project/kimchi.git
 RUN git clone https://github.com/kimchi-project/wok.git
 
 # build
-RUN cd /kimchi && ./autogen.sh --system && make all && make install
-RUN cd /wok && ./autogen.sh --system && make all && make install
+RUN cd /kimchi && ./autogen.sh --system && make all && make install && make check-local && make check
+RUN cd /wok && ./autogen.sh --system && make all && make install && make check-local && make check
 
 # change starup behaviour
 COPY run /root/run
