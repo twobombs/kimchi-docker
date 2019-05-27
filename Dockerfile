@@ -17,9 +17,15 @@ ENV LANG="en_US.UTF-8"
 RUN git clone https://github.com/kimchi-project/kimchi.git
 RUN git clone https://github.com/kimchi-project/wok.git
 
-# build
+# build version
 RUN cd /kimchi && ./autogen.sh --system && make all && make install
 RUN cd /wok && ./autogen.sh --system && make all && make install
+
+# dpkg version
+RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/wok-2.5.0-0.noarch.deb
+RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/kimchi-2.5.0-0.noarch.deb
+RUN cd /root && dpkg -i wok-2.5.0-0.noarch.deb && apt install -f -y && dpkg --ignore-depends=python-imaging -i kimchi-2.5.0-0.noarch.deb
+
 
 # change starup behaviour
 COPY run /root/run
