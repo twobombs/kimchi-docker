@@ -24,6 +24,7 @@ RUN cd /wok && ./autogen.sh --system && make all && make install
 # dpkg version
 RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/wok-2.5.0-0.noarch.deb
 RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/kimchi-2.5.0-0.noarch.deb
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y python-cherrypy3 python-jsonschema python-m2crypto python-pam python-lxml python-psutil && apt-get clean all
 RUN cd /root && dpkg -i wok-2.5.0-0.noarch.deb && apt install -f -y && dpkg --ignore-depends=python-imaging -i kimchi-2.5.0-0.noarch.deb
 
 
