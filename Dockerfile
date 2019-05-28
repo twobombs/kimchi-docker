@@ -18,15 +18,11 @@ RUN git clone https://github.com/kimchi-project/kimchi.git
 RUN git clone https://github.com/kimchi-project/wok.git
 
 # build version
-RUN cd /kimchi && ./autogen.sh --system && make all && make install
-RUN cd /wok && ./autogen.sh --system && make all && make install
-
-# dpkg version
-RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/wok-2.5.0-0.noarch.deb
-RUN cd /root && wget https://github.com/kimchi-project/kimchi/releases/download/2.5.0/kimchi-2.5.0-0.noarch.deb
 #dependancies
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y python-cherrypy3 python-jsonschema python-m2crypto python-pam python-lxml python-psutil && apt-get clean all
-# RUN cd /root && dpkg -i wok-2.5.0-0.noarch.deb && apt install -f -y && dpkg --ignore-depends=python-imaging -i kimchi-2.5.0-0.noarch.deb
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap python3-lxml nginx gettex python-cherrypy3 python3-openssl python-jsonschema python-cheetah python3-pam python3-psutil python-m2crypto python-pam python-lxml python-psutil && apt-get clean all
+# make dpkg version
+RUN cd /wok && ./autogen.sh --system && make all && make install && make deb && dpkg -i wok*.deb
+RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb && dpkg --ignore-depends=python-imaging -i kimchi*.deb
 
 # change starup behaviour
 COPY run /root/run
