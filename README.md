@@ -1,5 +1,5 @@
 # kimchi-docker
-Kimchi on Docker Steroids
+Kimchi on Docker Steroids [borken because py3 migration]
 
 Kimchi wrapped in Qemu baked in Wok, with a noVNC WebUI sauce, served in a container.
 
