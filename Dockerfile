@@ -25,7 +25,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap su
 RUN cd /wok && ./autogen.sh --system && make all && make install && make deb 
 ## && dpkg -i wok*.deb
 
-RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb && dpkg --ignore-depends=python-imaging -i kimchi*.deb
+RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
+## && dpkg --ignore-depends=python-imaging -i kimchi*.deb
 
 # fetch minimal install
 RUN cd /root && wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
