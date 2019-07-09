@@ -16,18 +16,21 @@ ENV LANG="en_US.UTF-8"
 # fetch code
 RUN git clone https://github.com/kimchi-project/kimchi.git
 RUN git clone https://github.com/kimchi-project/wok.git
-# RUN git clone https://github.com/kimchi-project/wok.git
+RUN git clone https://github.com/kimchi-project/ginger.git
+RUN git clone https://github.com/kimchi-project/gingerbase.git
 
-# build version
-#dependancies
+# build versions
+# dependancies
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap sudo python3-lxml nginx python-cherrypy3 python3-openssl python-jsonschema python-cheetah python3-pam python3-psutil python-m2crypto python-pam python-lxml python-psutil && apt-get install -y python3 python3-setuptools libpython3.6-dev libnl-route-3-dev sassc && pip3 install ethtool ipaddr pyaml && apt-get clean all
 
 # make wok 
 RUN cd /wok && git submodule update --remote /wok/src/wok/plugins/kimchi && ./autogen.sh --system && make all && make install && make deb 
 # ./build-all.sh
 
+# make plugins
 RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
-## && dpkg --ignore-depends=python-imaging -i kimchi*.deb
+RUN cd /ginger && ./autogen.sh --system && make all && make install && make deb
+RUN cd /gingerbase && ./autogen.sh --system && make all && make install && make deb
 
 # fetch minimal install
 RUN cd /root && wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
