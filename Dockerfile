@@ -15,7 +15,7 @@ ENV LANG="en_US.UTF-8"
 
 # fetch code
 RUN git clone https://github.com/kimchi-project/kimchi.git
-RUN git clone --recursive https://github.com/kimchi-project/wok.git
+RUN git clone https://github.com/kimchi-project/wok.git
 # RUN git clone https://github.com/kimchi-project/wok.git
 
 # build version
@@ -23,7 +23,7 @@ RUN git clone --recursive https://github.com/kimchi-project/wok.git
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap sudo python3-lxml nginx python-cherrypy3 python3-openssl python-jsonschema python-cheetah python3-pam python3-psutil python-m2crypto python-pam python-lxml python-psutil && apt-get install -y python3 python3-setuptools libpython3.6-dev libnl-route-3-dev sassc && pip3 install ethtool ipaddr pyaml && apt-get clean all
 
 # make wok 
-RUN cd /wok && git submodule update --remote && ./autogen.sh --system && make all && make install && make deb 
+RUN cd /wok && git submodule update --remote /wok/src/wok/plugins/kimchi && ./autogen.sh --system && make all && make install && make deb 
 # ./build-all.sh
 
 RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
