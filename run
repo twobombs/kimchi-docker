@@ -1,18 +1,20 @@
 # X-run script for non-nvidia hosts
+# modified towork with kimchi+plugins
+
 rm /tmp/.X0-lock
 export LIBGL_ALWAYS_SOFTWARE=1&&Xvfb :0 -screen 0 1280x720x24 -ac&
 sleep 10
 export DISPLAY=:0&&startxfce4&
 sleep 10
 x0vncserver -display :0 -passwordfile ~/.vnc/passwd&
-libvirtd -d && service virtlogd start && service libvirt-bin start && brctl addbr br0 
+service virtlogd start && service libvirtd start && brctl addbr br0 
 /usr/share/novnc/utils/launch.sh --vnc localhost:5900 &
 
 # start web services
 service nginx start
 
 # wok on 3
-cd /wok && python3 src/wokd
+wokd
 
 echo "done"
 read n -1
