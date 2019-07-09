@@ -19,7 +19,7 @@ RUN git clone https://github.com/kimchi-project/wok.git
 
 # build version
 #dependancies
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap sudo python3-lxml nginx python-cherrypy3 python3-openssl python-jsonschema python-cheetah python3-pam python3-psutil python-m2crypto python-pam python-lxml python-psutil && apt-get clean all
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y  python3-ldap sudo python3-lxml nginx python-cherrypy3 python3-openssl python-jsonschema python-cheetah python3-pam python3-psutil python-m2crypto python-pam python-lxml python-psutil && apt-get install -y python3 python3-setuptools libpython3.6-dev libnl-route-3-dev && pip3 install ethtool ipaddr && apt-get clean all
 
 # make dpkg version
 RUN cd /wok && ./autogen.sh --system && make all && make install && make deb 
