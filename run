@@ -14,7 +14,7 @@ service virtlogd start && service libvirtd start && brctl addbr br0
 service nginx start
 
 # wok on 3
-wokd
+cd /wok/src && wokd
 
 echo "done"
 read n -1
