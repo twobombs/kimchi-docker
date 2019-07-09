@@ -28,9 +28,9 @@ RUN cd /wok && git submodule update --remote /wok/src/wok/plugins/kimchi && ./au
 # ./build-all.sh
 
 # make plugins
-# RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
-RUN cd /ginger && ./autogen.sh --system && make all && make install && make deb
-RUN cd /gingerbase && ./autogen.sh --system && make all && make install && make deb
+RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
+# RUN cd /ginger && ./autogen.sh --system && make all && make install && make deb
+# RUN cd /gingerbase && ./autogen.sh --system && make all && make install && make deb
 
 # fetch minimal install
 RUN cd /root && wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
