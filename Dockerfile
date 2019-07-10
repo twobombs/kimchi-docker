@@ -40,5 +40,8 @@ RUN cd /root && wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installe
 COPY run /root/run
 RUN chmod 755 /root/run
 
+# enable and set default root login passwd for Wok UI login
+RUN echo "root:0000000" | chpasswd
+
 EXPOSE 8001
 ENTRYPOINT /root/run
