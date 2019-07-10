@@ -8,7 +8,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get -y install pep8 pyflakes py
 
 #python3 wok compatibility
 RUN python3 -m pip install --upgrade pip && pip3 install cheetah3 && pip3 install psutil && pip3 install websockify && pip3 install jsonschema
-RUN apt-get -y install pm-utils libvirt-clients libvirt-daemon libvirt-daemon-driver-storage-rbd libvirt-daemon-system libvirt0 apmd cpufrequtils wireless-tools 
+RUN apt-get -y install pm-utils libvirt-clients libvirt-daemon libvirt-daemon-driver-storage-rbd libvirt-daemon-system libvirt0 apmd cpufrequtils wireless-tools  && apt-get clean all
 
 # Set a UTF-8 locale - this is needed for some python packages to play nice
 RUN apt-get -y install language-pack-en
