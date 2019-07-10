@@ -7,7 +7,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get -y install python3-configob
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get -y install pep8 pyflakes python3-requests python3-mock bc && apt-get clean all
 
 #python3 wok compatibility
-RUN pip3 install cheetah3 && pip3 install psutil pm-utils libvirt-clients libvirt-daemon libvirt-daemon-driver-storage-rbd libvirt-daemon-system libvirt0 && pip3 install websockify && pip3 install jsonschema
+RUN pip3 install cheetah3 && pip3 install psutil libvirt-clients libvirt-daemon libvirt-daemon-driver-storage-rbd libvirt-daemon-system libvirt0 && pip3 install websockify && pip3 install jsonschema
+# pm-utils
 
 # Set a UTF-8 locale - this is needed for some python packages to play nice
 RUN apt-get -y install language-pack-en
