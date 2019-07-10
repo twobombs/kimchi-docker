@@ -12,3 +12,5 @@ Build for compulsive Rancher alpha & RC testing.
 If you also suffer from compulse baremetal host building: there are support groups for that ya know.
 
 And: don't do VMs. nor drugs. They're bad, mkay.
+
+root and (Web)VNC password for this container is 00000000
