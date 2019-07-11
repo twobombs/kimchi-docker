@@ -15,10 +15,10 @@ RUN apt-get -y install language-pack-en
 ENV LANG="en_US.UTF-8"
 
 # fetch code
-RUN git clone https://github.com/kimchi-project/kimchi.git
-RUN git clone https://github.com/kimchi-project/wok.git
-RUN git clone https://github.com/kimchi-project/ginger.git
-RUN git clone https://github.com/kimchi-project/gingerbase.git
+RUN git clone --recursive https://github.com/kimchi-project/wok.git
+# RUN git clone https://github.com/kimchi-project/kimchi.git
+# RUN git clone https://github.com/kimchi-project/ginger.git
+# RUN git clone https://github.com/kimchi-project/gingerbase.git
 
 # build versions
 # dependancies
@@ -29,9 +29,9 @@ RUN cd /wok && git submodule update --remote /wok/src/wok/plugins/kimchi && ./au
 # ./build-all.sh
 
 # make plugins
-RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
-RUN cd /ginger && ./autogen.sh --system && make all && make install && make deb
-RUN cd /gingerbase && ./autogen.sh --system && make all && make install && make deb
+# RUN cd /kimchi && ./autogen.sh --system && make all && make install && make deb
+# RUN cd /ginger && ./autogen.sh --system && make all && make install && make deb
+# RUN cd /gingerbase && ./autogen.sh --system && make all && make install && make deb
 
 # fetch minimal install
 RUN cd /root && wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
@@ -41,7 +41,7 @@ COPY run /root/run
 RUN chmod 755 /root/run
 
 # enable and set default root login passwd for Wok UI login
-RUN echo "root:0000000" | chpasswd
+RUN echo "root:00000000" | chpasswd
 
 EXPOSE 8001
 ENTRYPOINT /root/run
