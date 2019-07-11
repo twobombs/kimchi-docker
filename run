@@ -13,6 +13,9 @@ service virtlogd start && service libvirtd start && brctl addbr br0
 # start web services
 service nginx start
 
+# start dbus system
+service dbus start
+
 # wok on 3
 virsh pool-define-as default dir - - - - "/mnt" && virsh pool-autostart default on
 cd /wok/src && ./wokd
